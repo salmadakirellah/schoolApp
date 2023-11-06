@@ -23,7 +23,7 @@ gestion filiere
 <img src="WhatsApp Image 2023-11-06 at 14.46.37.jpeg" width="300" height="700"> 
 gestion etudiant
 <img src="Capture d’écran 2023-11-06 144056.png" width="600" height="300"> 
-partie node js :gestion etudiant
+gestion etudiant
 <img src="Capture d’écran 2023-11-06 144350.png" width="600" height="300"> 
 gestion filiere
 
