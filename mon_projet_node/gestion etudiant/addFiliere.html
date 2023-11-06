@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulaire d'inscription des étudiants</title>
+    <style>
+        /* Ajoutez ici votre CSS pour le formulaire si nécessaire */
+    </style>
+</head>
+
+<body>
+    <h1>LISTE DES ÉTUDIANTS</h1>
+
+    <button id="newStudentButton">Nouvel filiere</button>
+
+    <!-- Conteneur de la liste des étudiants -->
+    <table id="studentTable">
+        <tr>
+            <th>Code</th>
+            <th>Libellé</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+
+    <!-- Formulaire caché initialement -->
+    <div id="studentForm" style="display: none;">
+        <form id="studentDataForm">
+            <label>Code:
+                <input type="text" name="code" id="code">
+            </label><br>
+            <label>Libellé:
+                <input type="text" name="libelle" id="libelle">
+            </label><br>
+
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+
+    <script>
+        // Gérez l'affichage du formulaire lorsque le bouton "Nouvel étudiant" est cliqué
+        const newStudentButton = document.getElementById("newStudentButton");
+        const studentForm = document.getElementById("studentForm");
+
+        newStudentButton.addEventListener("click", function() {
+            studentForm.style.display = "block";
+        });
+
+        // Gérez l'ajout de la filière à la liste sous forme de tableau
+        const studentDataForm = document.getElementById("studentDataForm");
+        const studentTable = document.getElementById("studentTable");
+
+        studentDataForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const code = document.getElementById("code").value;
+            const libelle = document.getElementById("libelle").value;
+
+            // Créez une nouvelle ligne dans le tableau pour afficher la filière
+            const newRow = studentTable.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+
+            cell1.innerHTML = code;
+            cell2.innerHTML = libelle;
+            cell3.innerHTML = '<button onclick="editFiliere(this)">Modifier</button> <button onclick="deleteFiliere(this)">Supprimer</button>';
+
+            // Réinitialisez le formulaire et masquez-le
+            studentDataForm.reset();
+            studentForm.style.display = "none";
+        });
+
+        // Fonction pour supprimer une ligne de filière
+        function deleteFiliere(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Fonction pour éditer une ligne de filière
+        function editFiliere(button) {
+            const row = button.parentNode.parentNode;
+            const cells = row.getElementsByTagName('td');
+            document.getElementById('code').value = cells[0].innerHTML;
+            document.getElementById('libelle').value = cells[1].innerHTML;
+
+            // Supprimez la ligne existante
+            deleteFiliere(button);
+
+            // Affichez le formulaire pour la modification
+            studentForm.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

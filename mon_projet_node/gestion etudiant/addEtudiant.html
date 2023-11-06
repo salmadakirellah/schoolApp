@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulaire d'inscription des étudiants</title>
+    <style>
+        /* Ajoutez ici votre CSS pour le formulaire si nécessaire */
+    </style>
+</head>
+
+<body>
+    <h1>LISTE DES ÉTUDIANTS</h1>
+
+    <button id="newStudentButton">Nouvel étudiant</button>
+
+    <!-- Conteneur de la liste des étudiants -->
+    <table id="studentTable">
+        <tr>
+            <th>Nom</th>
+
+            <th>Adresse e-mail</th>
+            <th>Téléphone</th>
+            <th>Filière</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+
+    <!-- Formulaire caché initialement -->
+    <div id="studentForm" style="display: none;">
+        <form id="studentDataForm">
+            <label>Nom:
+                <input type="text" name="nom" id="nom">
+            </label><br>
+
+            <label>Adresse e-mail:
+                <input type="email" name="email" id="email">
+            </label><br>
+            <label>Téléphone:
+                <input type="tel" name="telephone" id="telephone">
+            </label><br>
+            <label>Filière:
+                <select name="filiere" id="filiere">
+                    <option value="Informatique">Informatique</option>
+                    <option value="Génie électrique">Génie électrique</option>
+                    <option value="Génie civil">Génie civil</option>
+                </select>
+            </label><br>
+
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+
+    <script>
+        // Gérez l'affichage du formulaire lorsque le bouton "Nouvel étudiant" est cliqué
+        const newStudentButton = document.getElementById("newStudentButton");
+        const studentForm = document.getElementById("studentForm");
+
+        newStudentButton.addEventListener("click", function() {
+            studentForm.style.display = "block";
+        });
+
+        // Gérez l'ajout de l'étudiant à la liste sous forme de tableau
+        const studentDataForm = document.getElementById("studentDataForm");
+        const studentTable = document.getElementById("studentTable");
+
+        studentDataForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const nom = document.getElementById("nom").value;
+
+            const email = document.getElementById("email").value;
+            const telephone = document.getElementById("telephone").value;
+            const filiere = document.getElementById("filiere").value;
+
+            // Créez une nouvelle ligne dans le tableau pour afficher l'étudiant
+            const newRow = studentTable.insertRow(-1);
+            const cell1 = newRow.insertCell(0);
+
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+            const cell6 = newRow.insertCell(5);
+
+            cell1.innerHTML = nom;
+
+            cell3.innerHTML = email;
+            cell4.innerHTML = telephone;
+            cell5.innerHTML = filiere;
+            cell6.innerHTML = '<button onclick="editStudent(this)">Modifier</button> <button onclick="deleteStudent(this)">Supprimer</button>';
+
+            // Réinitialisez le formulaire et masquez-le
+            studentDataForm.reset();
+            studentForm.style.display = "none";
+        });
+
+        // Fonction pour supprimer une ligne d'étudiant
+        function deleteStudent(button) {
+            const row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+
+        // Fonction pour éditer une ligne d'étudiant
+        function editStudent(button) {
+            const row = button.parentNode.parentNode;
+            const cells = row.getElementsByTagName('td');
+            document.getElementById('nom').value = cells[0].innerHTML;
+
+            document.getElementById('email').value = cells[2].innerHTML;
+            document.getElementById('telephone').value = cells[3].innerHTML;
+            document.getElementById('filiere').value = cells[4].innerHTML;
+
+            // Supprimez la ligne existante
+            deleteStudent(button);
+
+            // Affichez le formulaire pour la modification
+            studentForm.style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

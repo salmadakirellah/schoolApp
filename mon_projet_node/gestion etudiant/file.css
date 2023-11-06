@@ -1,0 +1,77 @@
+/* Style de base pour la page */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    /* Police de caractères par défaut */
+    margin: 0;
+    padding: 0;
+    background-image: url('3.jpeg');
+    /* Remplacez 'votre-image.jpg' par le chemin de votre image de fond */
+    background-size: cover;
+    /* Ajuste l'image de fond pour couvrir l'ensemble de la page */
+    background-repeat: no-repeat;
+    /* Empêche la répétition de l'image de fond */
+    background-attachment: fixed;
+    /* Fixe l'image de fond en place */
+    color: #131212;
+    /* Couleur du texte */
+}
+
+h1 {
+    color: #ae0606;
+}
+
+
+/* Style du formulaire */
+
+table {
+    width: 50%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+}
+
+th,
+td {
+    padding: 7px;
+    text-align: left;
+}
+
+
+/* Style des champs de formulaire */
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    width: 80%;
+    padding: 10px;
+    margin: 2px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+
+/* Style du bouton d'inscription */
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
